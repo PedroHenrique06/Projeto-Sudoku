@@ -20,6 +20,8 @@ add_executable(sudoku
     "lib/messages.cpp"
     "core/main.cpp"
     "core/sudoku_gm.cpp"
-    "core/sudoku_board.cpp" )
+    "core/sudoku_board.cpp"
+    "core/board_treatment.cpp"
+    "core/print.cpp")
 
 target_compile_features( sudoku PUBLIC cxx_std_17 )

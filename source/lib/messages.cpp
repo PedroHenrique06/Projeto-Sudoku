@@ -9,11 +9,11 @@ namespace coms{ // message handler
 
     /// Prints out the warning, but the program keeps running.
     void Warning( const std::string& msg,  const SourceContext& sc ){
-        std::cerr << Color::tcolor( "Warning: \""+msg+"\"", Color::BRIGHT_BLUE ) << "\n";
+        std::cerr << Color::tcolor( "Warning: \""+msg+"\"", Color::BRIGHT_YELLOW ) << "\n";
     }
     /// Prints out the warning, but the program keeps running, without showing the line of code that generated the warning.
     void Warning( const std::string& msg ){
-        std::cerr << Color::tcolor( "Warning: \""+msg+"\"", Color::BRIGHT_BLUE ) << "\n";
+        std::cerr << Color::tcolor( "Warning: \""+msg+"\"", Color::BRIGHT_YELLOW ) << "\n";
     }
 
     /// Prints out the error message and exits the program.

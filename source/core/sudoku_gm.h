@@ -23,6 +23,9 @@ using std::ostringstream;
 #include <numeric>
 using std::accumulate;
 
+//definição de apelido visto que não foi previamente definido
+using uint = unsigned int;
+
 #include "../lib/messages.h"
 #include "../lib/text_color.h"
 #include "sudoku_board.h"
@@ -30,8 +33,7 @@ using std::accumulate;
 namespace sdkg {
 
     /// Game class representing a Life Game simulation manager.
-    class SudokuGame
-    {
+    class SudokuGame{
         private:
             //=== Structs
 
@@ -65,7 +67,7 @@ namespace sdkg {
 
             /// Options from the main menu.
             enum class main_menu_opt_e : uint {
-                PLAY=0,        //!< Play option.
+                PLAY=1,        //!< Play option.
                 NEW_GAME,      //!< New puzzle option.
                 QUIT,          //!< Quit option.
                 HELP,          //!< Print help option.
@@ -99,21 +101,31 @@ namespace sdkg {
 
             Options m_opt;                          //!< Overall game Options to set up the game configuration.
             game_state_e m_game_state;              //!< Current game state.
-            std::string m_curr_msg;                 //!< Current message to display on screen.
+            std::string m_curr_msg = "";                 //!< Current message to display on screen.
             Play m_curr_play;                       //!< Current user play.
             bool m_quitting_match;                  //!< Flag that indicates whether the user wants to end an ongoing game.
+            bool m_game_over;                       //!< Flag that indicates if the game has ended or not.
             short m_checks_left;                    //!< Current # of checks user can request.
+            unsigned new_game_board = 0;            //!< Auxiliar variable used to calculates off_set_board.
+            unsigned off_set_board = 0;             //!< Indicates the index of the current board to be showed.
             main_menu_opt_e m_curr_main_menu_opt;   //!< Current main menu option.
-            std::vector< Command > undo_log;        //!< Log of commands to support undoing.
+            std::vector<Command> undo_log;          //!< Log of commands to support undoing.
+            std::vector<SBoard> available_puzzles;  //!< List of available puzzles.
 
         public:
             SudokuGame();
             ~SudokuGame();
 
+            void initialize(int, char**);
+            void display_welcome();
             void usage(std::string)const;
             void update();
             void process_events();
-            void render();
+            void render()const;
+            bool game_over();
+             
+            friend void fill_data_base_puzzles(SudokuGame&);
+            
 
     }; // SudokuGame class.
 }

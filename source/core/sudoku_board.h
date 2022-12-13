@@ -14,16 +14,22 @@
  *  representing all thesse different conditions.
  */
 
-constexpr short SB_SIZE{9};
+#include "board_treatment.h"
+
+#define SIZE 9
 
 namespace sdkg {
 
     /// This class stores values for a 9x9 Sudoku board.
     class SBoard {
-        private:
-            short board[SB_SIZE*SB_SIZE];
         public:
-        SBoard();
+            SBoard();
+            void add(int, int, int);
+            bool validate();
+            void show_board();
+            void clear();
+        private:
+            short m_board[SIZE][SIZE];
     };
 
 
@@ -76,7 +82,7 @@ namespace sdkg {
             PlayerBoard( const PlayerBoard & ) = delete;
 
             //=== Access methods.
-
+            
             //=== Modifiers methods.
     };
 }

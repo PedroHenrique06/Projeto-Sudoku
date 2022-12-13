@@ -31,11 +31,12 @@
  * @remark On 2020-09-19 changed ...
  */
 
+#include <iostream>
 #include <cstdlib> // EXIT_SUCCESS
 
 #include "sudoku_gm.h"
 
-int main( int argc, char ** argv )
+int main( int argc, char** argv )
 {
     sdkg::SudokuGame game;
 
