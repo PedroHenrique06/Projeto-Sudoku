@@ -48,7 +48,6 @@ namespace sdkg{
       }
       file.close();
       coms::Message("Finished reading input data file.");
-      game.m_game_state = SudokuGame::game_state_e::STARTING;
   }
 
 }
@@ -65,7 +64,7 @@ bool is_valid( short b[SIZE][SIZE] ){
             auto n=std::abs(b[row][col]);
             // Checa se temos um número fora do intervalo válido
             if(n<1 or n>9) return false;
-            numbers[n-1] = true;
+            numbers[n-1] = true; 
         }
         // Testar se todos os algorismos foram encontrados
         if( not std::all_of(numbers, numbers+SIZE, 

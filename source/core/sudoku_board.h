@@ -17,6 +17,7 @@
 #include "board_treatment.h"
 
 #define SIZE 9
+#define EMPTY_VALUE -1
 
 namespace sdkg {
 
@@ -24,10 +25,15 @@ namespace sdkg {
     class SBoard {
         public:
             SBoard();
-            void add(int, int, int);
+            SBoard & operator=( SBoard & );
+            void add(int, int, short);
             bool validate();
             void show_board();
+            void show_board(int, int);
+            void show_board_checking();
             void clear();
+            short get_element_board(int x, int y);
+            void set_element_board(int x, int y, short valor);
         private:
             short m_board[SIZE][SIZE];
     };
@@ -76,14 +82,32 @@ namespace sdkg {
         public:
             //=== Regular methods.
             PlayerBoard(){/*empty*/}
-            PlayerBoard( const SBoard &sb );
+            PlayerBoard(SBoard &sb );
             ~PlayerBoard(){/*empty*/}
-            PlayerBoard & operator=( const PlayerBoard & ) = delete;
+            PlayerBoard & operator=( PlayerBoard & );
             PlayerBoard( const PlayerBoard & ) = delete;
 
             //=== Access methods.
-            
+            bool check_in_m_solution(int x, int y, short valor);
+            bool check_incorret(int x, int y);
+            bool check_invalid(int x, int y);
+            short get_element_board(int x, int y);
+            SBoard get_board_moves();
+            SBoard get_board_solution();
+            bool valid_move(int x, int y, short valor);
+            bool check_finished_board();
+            bool full();
+            bool check_original_pos(int row, int col);
+            bool pecorrer_quadrante(int row_ini, int row_fin, int col_ini, int col_fin, short value);
+            int definir_quadrante(int row, int col);
+        
             //=== Modifiers methods.
+            void reset_to_previous_board(SBoard &sb);    
+            // Altera valor do tabuleiro de jogo na coordenada informada (x,y);
+            void set_element_m_player_moves(int x, int y, short valor);
+            // Altera o tabuleiro que está sendo usado
+            void change_board(SBoard&);
+
     };
 }
 #endif

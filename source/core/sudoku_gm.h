@@ -22,6 +22,7 @@ using std::back_inserter;
 using std::ostringstream;
 #include <numeric>
 using std::accumulate;
+#include <stack>
 
 //definição de apelido visto que não foi previamente definido
 using uint = unsigned int;
@@ -55,7 +56,7 @@ namespace sdkg {
                 CHECKING_MOVES,         //!< User wants to check whether his previous moves are correct.
                 UNDOING_PLAY,           //!< User wants to undo a previous move he did.
                 // ====================================================
-                FINISHED_PUZZLE         //!< User has completed a puzzle. 
+                FINISHED_PUZZLE,         //!< User has completed the board. 
             };
 
 
@@ -71,8 +72,7 @@ namespace sdkg {
                 NEW_GAME,      //!< New puzzle option.
                 QUIT,          //!< Quit option.
                 HELP,          //!< Print help option.
-                N_OPTIONS,     //!< Total number of options.
-                INVALID        //!< Invalid option.
+                WAITING,       //!< Wating for the menu option.
             };
 
             /// Represents a user move.
@@ -101,16 +101,19 @@ namespace sdkg {
 
             Options m_opt;                          //!< Overall game Options to set up the game configuration.
             game_state_e m_game_state;              //!< Current game state.
-            std::string m_curr_msg = "";                 //!< Current message to display on screen.
+            std::string m_curr_msg = "";            //!< Current message to display on screen.
             Play m_curr_play;                       //!< Current user play.
-            bool m_quitting_match;                  //!< Flag that indicates whether the user wants to end an ongoing game.
             bool m_game_over;                       //!< Flag that indicates if the game has ended or not.
+            bool m_full_board;                      //!< Flag that indicates if the board is complete.
+            bool m_quiting_game;                    //!< Flag that indicates if the player is quitting the game.
             short m_checks_left;                    //!< Current # of checks user can request.
             unsigned new_game_board = 0;            //!< Auxiliar variable used to calculates off_set_board.
             unsigned off_set_board = 0;             //!< Indicates the index of the current board to be showed.
             main_menu_opt_e m_curr_main_menu_opt;   //!< Current main menu option.
-            std::vector<Command> undo_log;          //!< Log of commands to support undoing.
             std::vector<SBoard> available_puzzles;  //!< List of available puzzles.
+            std::stack <SBoard> stack_moves;        //!< Stack containing the board's move history
+            PlayerBoard player;                     //!< The current board that's being played
+
 
         public:
             SudokuGame();
@@ -119,13 +122,14 @@ namespace sdkg {
             void initialize(int, char**);
             void display_welcome();
             void usage(std::string)const;
-            void update();
+            void set_game();
             void process_events();
-            void render()const;
+            void update();
+            bool is_complete();
+            void render();
             bool game_over();
              
             friend void fill_data_base_puzzles(SudokuGame&);
-            
 
     }; // SudokuGame class.
 }
