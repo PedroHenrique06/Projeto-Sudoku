@@ -89,7 +89,7 @@ namespace sdkg {
 
             //=== Access methods.
             bool check_in_m_solution(int x, int y, short valor);
-            bool check_incorret(int x, int y);
+            bool check_incorrect(int x, int y);
             bool check_invalid(int x, int y);
             short get_element_board(int x, int y);
             SBoard get_board_moves();
@@ -98,14 +98,12 @@ namespace sdkg {
             bool check_finished_board();
             bool full();
             bool check_original_pos(int row, int col);
-            bool pecorrer_quadrante(int row_ini, int row_fin, int col_ini, int col_fin, short value);
-            int definir_quadrante(int row, int col);
+            bool go_through_quadrant(int row_ini, int row_fin, int col_ini, int col_fin, short value);
+            int define_quadrant(int row, int col);
         
             //=== Modifiers methods.
             void reset_to_previous_board(SBoard &sb);    
-            // Altera valor do tabuleiro de jogo na coordenada informada (x,y);
             void set_element_m_player_moves(int x, int y, short valor);
-            // Altera o tabuleiro que está sendo usado
             void change_board(SBoard&);
 
     };

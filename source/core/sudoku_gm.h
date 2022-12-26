@@ -24,7 +24,7 @@ using std::ostringstream;
 using std::accumulate;
 #include <stack>
 
-//definição de apelido visto que não foi previamente definido
+// Definição de nomenclatura.
 using uint = unsigned int;
 
 #include "../lib/messages.h"

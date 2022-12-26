@@ -4,7 +4,7 @@
 #include "print.h"
 
 namespace sdkg {
-    //Contrutor padrão
+    // Contrutor padrão.
     SBoard::SBoard(){
         // Tabuleiro vazio
         for(int i{0}; i<SIZE; i++)
@@ -12,7 +12,7 @@ namespace sdkg {
                 m_board[i][j] = 0;
     }
 
-    // Operador de atribuição
+    // Operador de atribuição.
     SBoard & SBoard::operator=( SBoard &b){
         for (int row = 0; row < SIZE; row++){
             for (int col = 0; col < SIZE; col++){
@@ -22,46 +22,46 @@ namespace sdkg {
         return *this;
     }
 
-    // Adição de valores ao tabuleiro
+   // Adição de valores ao tabuleiro.
    void SBoard::add(int x, int y, short value){
         m_board[x][y] = value;
 
     }
-    // Validação de tabuleiro
+    // Validação de tabuleiro.
     bool SBoard::validate(){
         return is_valid(m_board);
     }
-    // Print do tabuleiro
+    // Print do tabuleiro.
    void SBoard::show_board(){
         print(m_board);
     }
-    // Print do tabuleiro com setas
+    // Print do tabuleiro com setas.
     void SBoard::show_board(int r, int c){
         print_with_arrows(m_board, r, c );
     }
 
-    // Print do tabuleiro com cores
+    // Print do tabuleiro com cores.
     void SBoard::show_board_checking(){
         print_checking(m_board);
     }
 
-    // Reinicia todas as posições com 0
+    // Reinicia todas as posições com 0.
     void SBoard::clear(){
         for(int i{0}; i<SIZE; i++)
             for(int j{0}; j<SIZE; j++)
                 m_board[i][j] = 0;      
     }
 
-    //retorna o valor do tabuleiro na coordenada (x, y);
+    // Retorna o valor do tabuleiro na coordenada (x, y).
     short SBoard::get_element_board(int x, int y){
         return m_board[x][y];
     }
-    //altera valor do tabuleiro na coordenada (x, y)
+    // Altera valor do tabuleiro na coordenada (x, y).
     void SBoard::set_element_board(int x, int y, short valor){
         m_board[x][y] = valor;
     }
 
-    //contrutor passando uma Sboard como argumento;
+    // Construtor passando um Sboard como argumento.
     PlayerBoard::PlayerBoard(SBoard &sb){
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
@@ -70,20 +70,20 @@ namespace sdkg {
             }
         }
     }
-    //checar se o valor informado é correto! 
+    // Checar se o valor informado é correto. 
     bool PlayerBoard::check_in_m_solution(int x, int y, short valor){
         return std::abs(m_solution.get_element_board(x, y)) == valor;
     }
-    //checar se o valor informado é incorreto, mas é uma jogada válida! 
-    bool PlayerBoard::check_incorret(int x, int y){ 
+    // Checa se o valor informado é incorreto, porém ainda é uma jogada válida. 
+    bool PlayerBoard::check_incorrect(int x, int y){ 
         return (m_player_moves.get_element_board(x, y)/10)*10 == prefix_e::PRE_INCORRECT;
     }
-    //checar se o valor informado é incorreto, mas é uma jogada inválida!
+    // Checa se o valor informado é incorreto, porém é uma jogada inválida.
     bool PlayerBoard::check_invalid(int x, int y){ 
         return (m_player_moves.get_element_board(x, y)/10)*10 == prefix_e::PRE_INVALID;
     }
 
-    // Checa se o tabuleiro está correto
+    // Checa se o tabuleiro está correto.
     bool PlayerBoard::check_finished_board(){
         bool equal{true};
         for(int row{0}; row<SIZE; row++){
@@ -97,7 +97,7 @@ namespace sdkg {
         return equal;
     }
 
-    // Indica se o tabuleiro está totalmente preenchido
+    // Indica se o tabuleiro está totalmente preenchido.
     bool PlayerBoard::full(){
         bool full{true};
         for(int row{0}; row<SIZE; row++){
@@ -110,8 +110,7 @@ namespace sdkg {
         return full;
     }
 
-
-    //reseta o tabuleiro para o tabuleiro da rodada anterior;
+    // Reseta o tabuleiro para o tabuleiro da rodada anterior.
     void PlayerBoard::reset_to_previous_board(SBoard &sb){
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
@@ -119,37 +118,34 @@ namespace sdkg {
             }
         }
     }
+    // Operador de atribuição.
     PlayerBoard & PlayerBoard::operator=( PlayerBoard &pb){
-    for (int row = 0; row < SIZE; row++)
-        {
-        
-            for (int col = 0; col < SIZE; col++)
-            {
+        for (int row = 0; row < SIZE; row++){
+            for (int col = 0; col < SIZE; col++){
                 this->m_solution.add(row, col, pb.get_board_solution().get_element_board(row, col));
                 this->m_player_moves.add(row, col, pb.get_board_moves().get_element_board(row, col));
-            }
-            
+            }   
         }
         return *this;
     }
 
-    //altera valor do tabuleiro de jogo na coordenada informada (x,y);
+    // Altera valor do tabuleiro de jogo na coordenada informada (x,y).
     void PlayerBoard::set_element_m_player_moves(int x, int y, short valor){
         m_player_moves.add(x, y, valor);
     }
 
-    //retorna o board para exibição;
+    // Retorna o board para exibição.
     SBoard PlayerBoard::get_board_moves(){
         return m_player_moves;
     }
-    //retorna o board com a solução;
+    // Retorna o board com a solução.
     SBoard PlayerBoard::get_board_solution(){
         return m_solution;
     }
-    //função para definir o quadrante que será feito as verificações, para realizar uma jogada;
-    int PlayerBoard::definir_quadrante(int row, int col){
+    // Define o quadrante onde serão feitas as verificações para realizar uma jogada.
+    int PlayerBoard::define_quadrant(int row, int col){
         int quadrante = 0;
-        //três primeiros quadrantes
+        // Três primeiros quadrantes.
         if((row >= 0 && row <= 2) && (col >= 0 && col <= 2)){
             quadrante = 1;
         }
@@ -159,7 +155,7 @@ namespace sdkg {
         else if((row >= 0 && row <= 2) && (col >= 6 && col <= 8)){
             quadrante = 3;
         }
-        //três quadrantes do meios
+        // Três quadrantes do meios.
         else if((row >= 3 && row <= 5) && (col >= 0 && col <= 2)){
             quadrante = 4;
         }
@@ -169,7 +165,7 @@ namespace sdkg {
         else if((row >= 3 && row <= 5) && (col >= 6 && col <= 8)){
             quadrante = 6;
         }
-        //ultimos quadrantes
+        // Últimos quadrantes
         else if((row >= 6 && row <= 8) && (col >= 0 && col <= 2)){
             quadrante = 7;
         }
@@ -183,8 +179,8 @@ namespace sdkg {
         return quadrante;
     }
 
-    //função para pecorrer o quadrante onde será realizada a jogada;
-    bool PlayerBoard::pecorrer_quadrante(int l_inicial, int l_final, int c_inicial, int c_final, short value){
+    // Pecorrer o quadrante onde será realizada a jogada.
+    bool PlayerBoard::go_through_quadrant(int l_inicial, int l_final, int c_inicial, int c_final, short value){
         bool valid = true;
         for (int rows{l_inicial}; rows<l_final; rows++){
             for (int cols{c_inicial}; cols<c_final; cols++){
@@ -199,22 +195,18 @@ namespace sdkg {
         return valid;
     }
 
-    /*
-        verifica se a coordenada informada
-        vai apontar para algum elemento ORIGINAL,
-        que não pode ser alterado;
-    */
+    // Verifica se a coordenada informada vai apontar para algum elemento ORIGINAL, ou seja, não pode ser alterado.
     bool PlayerBoard::check_original_pos(int row, int col){
         short pre_increment = m_player_moves.get_element_board(row, col) / 10;
         if(pre_increment == this->PRE_ORIGINAL && m_player_moves.get_element_board(row, col) > 0){
             return true;
-        }else return false;
+        }
+        else return false;
     }
 
-    //testa se é uma jogada valida,
+    // Testa se é uma jogada valida.
     bool PlayerBoard::valid_move(int row, int col, short value){
-        
-        //validando a linha(x), pode acontecer essa jogada nessa linha?
+        // Validando a linha(x) para verificar se a jogada pode ocorrer.
         bool valid = true;
         for (short cols{0}; cols<SIZE; cols++){
             if(value == m_player_moves.get_element_board(row, cols) 
@@ -225,7 +217,7 @@ namespace sdkg {
             }
 
         }
-        //validando a coluna, pode aconter essa jogada nessa coluna?
+        // Validando a coluna para verificar se a jogada pode ocorrer.
         if(valid){
             for (short rows{0}; rows<SIZE; rows++){
                 if(value == m_player_moves.get_element_board(rows, col) 
@@ -237,38 +229,38 @@ namespace sdkg {
             }
 
         }
-        //validando a quadrante, pode aconter essa jogada nesse quadrante?
+        // Validando a quadrante para verificar se a jogada pode ocorrer.
         if(valid){
-            switch (definir_quadrante(row, col))
+            switch (define_quadrant(row, col))
             {
             case 1:
-                valid = pecorrer_quadrante(0, 2, 0, 2, value);
+                valid = go_through_quadrant(0, 2, 0, 2, value);
                 break;
             case 2:
-                valid = pecorrer_quadrante(0, 2, 3, 5, value);
+                valid = go_through_quadrant(0, 2, 3, 5, value);
                 break;
             case 3:
-                valid = pecorrer_quadrante(0, 2, 6, 8, value);
+                valid = go_through_quadrant(0, 2, 6, 8, value);
                 break;
 
             case 4:
-                valid = pecorrer_quadrante(3, 5, 0, 2, value);
+                valid = go_through_quadrant(3, 5, 0, 2, value);
                 break;
             case 5:
-                valid = pecorrer_quadrante(3, 5, 3, 5, value);
+                valid = go_through_quadrant(3, 5, 3, 5, value);
                 break;
             case 6:
-                valid = pecorrer_quadrante(3, 5, 6, 8, value);
+                valid = go_through_quadrant(3, 5, 6, 8, value);
                 break;
 
             case 7:
-                valid = pecorrer_quadrante(6, 8, 0, 2, value);
+                valid = go_through_quadrant(6, 8, 0, 2, value);
                 break;
             case 8:
-                valid = pecorrer_quadrante(6, 8, 3, 5, value);
+                valid = go_through_quadrant(6, 8, 3, 5, value);
                 break;
             case 9:
-                valid = pecorrer_quadrante(6, 8, 6, 8, value);
+                valid = go_through_quadrant(6, 8, 6, 8, value);
                 break;
             default:
                 break;
@@ -279,6 +271,7 @@ namespace sdkg {
         return valid;
     }
 
+    // Altera o tabuleiro que está sendo usado.
     void PlayerBoard::change_board( SBoard& b){
         m_player_moves = b;
     }

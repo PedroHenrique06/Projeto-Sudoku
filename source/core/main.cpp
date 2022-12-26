@@ -40,13 +40,13 @@ int main( int argc, char** argv )
 {
     sdkg::SudokuGame game;
 
-    // Set up simulation.
+    // Prepara a simulação
     game.initialize( argc, argv );
 
-    // Initial message.
+    // Mensagem inicial
     game.display_welcome();
 
-    // The Game Loop (Architecture)
+    // Game Loop (Arquitetura).
     while( not game.game_over() )
     {
         game.process_events();

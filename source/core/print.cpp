@@ -4,26 +4,26 @@
 #include "../lib/text_color.h"
 #include "sudoku_gm.h"
 
-// Mostra o tabuleiro formatado
+// Mostra o tabuleiro formatado.
 void print( short b[SIZE][SIZE] ){
     short cont = 1;
-    // Indices das colunas
+    // Indices das colunas.
     std::cout <<  Color::tcolor("\n    1 2 3   4 5 6   7 8 9\n", Color::BRIGHT_BLUE, Color::REGULAR);
     for(int i{0}; i<SIZE; i++){
       if(i%3 == 0) std::cout << "  +-------+-------+-------+\n";
-      // Indices das linhas
+      // Indices das linhas.
       std::cout << Color::tcolor(std::to_string(cont+i) + " ", Color::BRIGHT_BLUE, Color::REGULAR);
       for(int j{0}; j<SIZE; j++){
         if(j%3 == 0) std::cout << "| ";
-        // Case: não há número ainda
+        // Case: não há número ainda.
         if(b[i][j] < 0) std::cout << "  ";
-        // Case: prefixo CORRECT
+        // Case: prefixo CORRECT.
         else if(b[i][j] > 10 && b[i][j] < 20) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_CORRECT), Color::BRIGHT_CYAN, Color::REGULAR) << " ";
-        // Case: prefixo INCORRECT
+        // Case: prefixo INCORRECT.
         else if (b[i][j] > 20 && b[i][j] < 30) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_INCORRECT), Color::BRIGHT_CYAN, Color::REGULAR) << " ";
-        // Case: prefixo INVALID
+        // Case: prefixo INVALID.
         else if (b[i][j] > 30 && b[i][j] < 40) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_INVALID), Color::RED, Color::REGULAR) << " ";
-        // Case: ORIGINAL
+        // Case: ORIGINAL.
         else std::cout << b[i][j] << " ";
       }
       std::cout << "|\n";
@@ -31,7 +31,7 @@ void print( short b[SIZE][SIZE] ){
     } 
 }
 
-// Faz o print da seta na coluna
+// Faz o print da seta na coluna.
 void col_arrow(int r){
   std::string pos_arrow = "\n                           ";
   if(r == 1){
@@ -65,15 +65,15 @@ void col_arrow(int r){
 }
 
 
-// Mostra o tabuleiro formatado
+// Mostra o tabuleiro formatado.
 void print_with_arrows( short b[SIZE][SIZE], int row, int col){
     short count = 1;
-    // Indices das colunas
+    // Indices das colunas.
     col_arrow(col);
     std::cout <<  Color::tcolor("      1 2 3   4 5 6   7 8 9\n", Color::BRIGHT_BLUE, Color::REGULAR);
     for(int i{0}; i<SIZE; i++){
       if(i%3 == 0) std::cout << "    +-------+-------+-------+\n";
-      // Indices das linhas
+      // Indices das linhas.
       if((count+i) == row){
         std::cout << Color::tcolor("> ", Color::BRIGHT_RED, Color::REGULAR)<< Color::tcolor(std::to_string(count+i) + " ", Color::BRIGHT_BLUE, Color::REGULAR);
       }
@@ -82,15 +82,15 @@ void print_with_arrows( short b[SIZE][SIZE], int row, int col){
       }
       for(int j{0}; j<SIZE; j++){
         if(j%3 == 0) std::cout << "| ";
-        // Case: não há número ainda
+        // Case: não há número ainda.
         if(b[i][j] < 0) std::cout << "  ";
-        // Case: prefixo CORRECT
+        // Case: prefixo CORRECT.
         else if(b[i][j] > 10 && b[i][j] < 20) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_CORRECT), Color::BRIGHT_CYAN, Color::REGULAR) << " ";
-        // Case: prefixo INCORRECT
+        // Case: prefixo INCORRECT.
         else if (b[i][j] > 20 && b[i][j] < 30) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_INCORRECT), Color::BRIGHT_CYAN, Color::REGULAR) << " ";
-        // Case: prefixo INVALID
+        // Case: prefixo INVALID.
         else if (b[i][j] > 30 && b[i][j] < 40) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_INVALID), Color::RED, Color::REGULAR) << " ";
-        // Case: ORIGINAL
+        // Case: ORIGINAL.
         else std::cout << b[i][j] << " ";
       }
       std::cout << "|\n";
@@ -99,26 +99,26 @@ void print_with_arrows( short b[SIZE][SIZE], int row, int col){
 }
 
 
-// Menu formatado para a checagem
+// Menu formatado para a checagem.
 void print_checking( short b[SIZE][SIZE] ){
     short cont = 1;
-    // Indices das colunas
+    // Indices das colunas.
     std::cout <<  Color::tcolor("\n    1 2 3   4 5 6   7 8 9\n", Color::BRIGHT_BLUE, Color::REGULAR);
     for(int i{0}; i<SIZE; i++){
       if(i%3 == 0) std::cout << "  +-------+-------+-------+\n";
-      // Indices das linhas
+      // Indices das linhas.
       std::cout << Color::tcolor(std::to_string(cont+i) + " ", Color::BRIGHT_BLUE, Color::REGULAR);
       for(int j{0}; j<SIZE; j++){
         if(j%3 == 0) std::cout << "| ";
-        // Case: não há número ainda
+        // Case: não há número ainda.
         if(b[i][j] < 0) std::cout << "  ";
-        // Case: prefixo CORRECT
+        // Case: prefixo CORRECT.
         else if(b[i][j] > 10 && b[i][j] < 20) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_CORRECT), Color::GREEN, Color::REGULAR) << " ";
-        // Case: prefixo INCORRECT
+        // Case: prefixo INCORRECT.
         else if (b[i][j] > 20 && b[i][j] < 30) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_INCORRECT), Color::RED, Color::REGULAR) << " ";
-        // Case: prefixo INVALID
+        // Case: prefixo INVALID.
         else if (b[i][j] > 30 && b[i][j] < 40) std::cout << Color::tcolor(std::to_string(b[i][j] % sdkg::PlayerBoard::prefix_e::PRE_INVALID), Color::RED, Color::REGULAR) << " ";
-        // Case: ORIGINAL
+        // Case: ORIGINAL.
         else std::cout << b[i][j] << " ";
       }
       std::cout << "|\n";
@@ -127,15 +127,15 @@ void print_checking( short b[SIZE][SIZE] ){
 }
 
 
-// Mostra o menu principal
+// Mostra o menu principal.
 void main_screen(sdkg::SBoard board, std::string msg){
-    // Print do título
+    // Print do título.
     std::cout << Color::tcolor("\n\n|--------MAIN SCREEN---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-    // Print do tabuleiro
+    // Print do tabuleiro.
     board.show_board();
 
-    // Print das opções de menu
+    // Print das opções de menu.
     if(msg.empty()){
       std::cout << Color::tcolor("MSG: []", Color::YELLOW, Color::REGULAR);
     }
@@ -149,12 +149,12 @@ void main_screen(sdkg::SBoard board, std::string msg){
     
 }
 
-  // Menu do PLAYING_MODE
+  // Menu do PLAYING_MODE.
 void action_mode_menu(sdkg::SBoard board, std::string msg, short checks, int row, int col){
-    // Print do título
+    // Print do título.
     std::cout << Color::tcolor("\n\n |--------ACTION MODE---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-    // Print do tabuleiro
+    // Print do tabuleiro.
     board.show_board(row, col);
 
     std::cout << Color::tcolor("  Checks left: [ "+std::to_string(checks)+" ]\n", Color::YELLOW, Color::REGULAR)
@@ -171,7 +171,7 @@ void action_mode_menu(sdkg::SBoard board, std::string msg, short checks, int row
               << Color::tcolor("Enter command > ", Color::YELLOW, Color::REGULAR);
 }
 
-// Mostra as regras do jogo
+// Mostra as regras do jogo.
 void help_sudoku_rules(){
     std::cout << Color::tcolor("\n\n-------------------------------------------------------------------------------------------\n", Color::GREEN, Color::REGULAR)
               << Color::tcolor(" The goal of SUdoku is to fill a 9x9 grid with numbers so that each row, column and 3x3\n section (nonet) contain all of the digits between 1 and 9.\n\n", Color::GREEN, Color::REGULAR)
@@ -182,81 +182,81 @@ void help_sudoku_rules(){
               << Color::tcolor("Press enter to go back.", Color::GREEN, Color::REGULAR);
 }
 
-// Mostra o menu do QUITTING_MODE
+// Mostra o menu do QUITTING_MODE.
 void menu_quitting(sdkg::SBoard board, std::string msg){
-    // Print do título
+    // Print do título.
     std::cout << Color::tcolor("\n\n|--------MAIN SCREEN---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-    // Print do tabuleiro
+    // Print do tabuleiro.
     board.show_board();
 
-    // mensagem de saída
+    // Mensagem de saída.
     std::cout << Color::tcolor("MSG: [", Color::YELLOW, Color::REGULAR)
               << Color::tcolor(msg, Color::YELLOW, Color::REVERSE)
               << Color::tcolor("]", Color::YELLOW, Color::REGULAR)
               << "\n\nYour choise [y/n] > ";
 }
 
-// Mostra o menu do REQUESTING_NEW_GAME
+// Mostra o menu do REQUESTING_NEW_GAME.
 void menu_requesting_new_game(sdkg::SBoard board, std::string msg){
-    // Print do título
+    // Print do título.
     std::cout << Color::tcolor("\n\n|--------MAIN SCREEN---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-    // Print do tabuleiro
+    // Print do tabuleiro.
     board.show_board();
 
-    // mensagem de saída
+    // Mensagem de saída.
     std::cout << Color::tcolor("MSG: [", Color::YELLOW, Color::REGULAR)
               << Color::tcolor(msg, Color::YELLOW, Color::REVERSE)
               << Color::tcolor("]", Color::YELLOW, Color::REGULAR)
               << "\n\nYour choise [y/n] > ";
 }
-// Mostra o menu do CHECKING_MOVES
+// Mostra o menu do CHECKING_MOVES.
 void menu_cheking(sdkg::SBoard board, std::string msg){
-    // Print do título
+    // Print do título.
     std::cout << Color::tcolor("\n\n|--------ACTION MODE---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-  // Print do tabuleiro formatado com cores
+  // Print do tabuleiro formatado com cores.
   board.show_board_checking();
 
-  // mensagem de saída
+  // Mensagem de saída.
   std::cout << Color::tcolor("MSG: [", Color::YELLOW, Color::REGULAR)
             << Color::tcolor(msg, Color::YELLOW, Color::REVERSE)
             << Color::tcolor("]", Color::YELLOW, Color::REGULAR);
 
-  // Mantém a tela pausada até que o usuário precione enter
+  // Mantém a tela pausada até que o usuário precione enter.
   std::string line;
   std::getline(std::cin, line);
 }
 
 void menu_finishing(sdkg::SBoard board, std::string msg){
-  // Print do título
+  // Print do título.
   std::cout << Color::tcolor("\n\n|--------ACTION MODE---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-  // Print do tabuleiro
+  // Print do tabuleiro.
   board.show_board();
 
-  // mensagem de saída
+  // Mensagem de saída.
   std::cout << Color::tcolor("MSG: [", Color::YELLOW, Color::REGULAR)
             << Color::tcolor(msg, Color::YELLOW, Color::REVERSE)
             << Color::tcolor("]", Color::YELLOW, Color::REGULAR)
             << "\n\nYour choise [y/n] > ";
 }
 
-// Print do menu do jogo finalizado
+// Print do menu do jogo finalizado.
 void menu_finished(sdkg::SBoard board, std::string msg){
-  // Print do título
+  // Print do título.
   std::cout << Color::tcolor("\n\n|--------ACTION MODE---------|", Color::BLUE, Color::REGULAR) << std::endl;
 
-  // Print do tabuleiro
+  // Print do tabuleiro.
   board.show_board_checking();
 
-  // mensagem de saída
+  // Mensagem de saída.
   std::cout << Color::tcolor("MSG: [", Color::YELLOW, Color::REGULAR)
             << Color::tcolor(msg, Color::YELLOW, Color::REVERSE)
             << Color::tcolor("]\n", Color::YELLOW, Color::REGULAR);
   
-  // Mantém a tela pausada até que o usuário precione enter
+  // Mantém a tela pausada até que o usuário precione enter.
   std::string line;
   std::getline(std::cin, line);
 }
