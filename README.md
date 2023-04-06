@@ -46,3 +46,8 @@ The game offers:
 UFRN/DIMAp, copyright 2020.
 
 Selan R. dos Santos
+
+# Implementation authors
+
++ Pedro Henrique Sales dos Santos
++ Igor Rauan Soares da Silva
