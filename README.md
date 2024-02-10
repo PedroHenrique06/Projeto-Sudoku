@@ -21,6 +21,7 @@ The Sudoku rules are:
 
 A ascii file with puzzles, as the one available in [`data/input.txt`](data/input.txt).
 
+
 # Usage
 
 ```
@@ -31,6 +32,13 @@ Usage: sudoku [-c <num>] [-h] <input_cfg_file>
     -h        Print this help text.
 ```
 
+# Images
+
+## Main Screen
+![main screen](images/sudoku-pic-one.png)
+
+## Gameplay Screen
+![gameplay screen](images/sudoku-pic-two.png)
 # Features
 
 The game offers:
