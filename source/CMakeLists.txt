@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project (SudokuGame VERSION 1.0.0 LANGUAGES CXX )
 
-# Currently CMake (since 2.8.5) supports generation of compilation databases
+# Currently CMake (since 2.8.5) supports generation of compilation databases 
 # for Unix Makefile builds (Ninja builds in the works) with the option
 # CMAKE_EXPORT_COMPILE_COMMANDS.
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
