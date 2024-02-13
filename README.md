@@ -30,7 +30,7 @@ Some Orientatios about how to compile and run this project:
   3. You have to execute the command  ``cmake ..`` within the ``build`` folder, as the ``CMakeLists.txt`` file should be in the parent folder of the current one.
   4. You have to execute the command ``make`` within the 'build' folder.
   5.  You have to execute the command ``./build/sudoku`` within ``source`` folder due to the way the project has been organized.
-  6.  Portuguese version [`cmake.txt`](docs/cmaka.txt).
+  6.  Portuguese version [`cmake.txt`](docs/cmake.txt).
   
 # Usage
 
