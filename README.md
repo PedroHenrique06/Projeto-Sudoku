@@ -22,6 +22,16 @@ The Sudoku rules are:
 A ascii file with puzzles, as the one available in [`data/input.txt`](data/input.txt).
 
 
+# Compilation and Running
+
+Some Orientatios about how to compile and run this project:
+  1. You'll need to have ``G++`` compiler and ``Cmake`` installed and up to date.
+  2. You have to create a folder ``build`` within the ``source`` folder.
+  3. You have to execute the command  ``cmake ..`` within the ``build`` folder, as the ``CMakeLists.txt`` file should be in the parent folder of the current one.
+  4. You have to execute the command ``make`` within the 'build' folder.
+  5.  You have to execute the command ``./build/sudoku`` within ``source`` folder due to the way the project has been organized.
+  6.  Portuguese version [`cmake.txt`](docs/cmaka.txt).
+  
 # Usage
 
 ```
