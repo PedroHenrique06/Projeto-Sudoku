@@ -39,6 +39,10 @@ Usage: sudoku [-c <num>] [-h] <input_cfg_file>
 
 ## Gameplay Screen
 ![gameplay screen](images/sudoku-pic-two.png)
+
+## Winner Screen
+![winner screen](images/sudoku-pic-three.png)
+
 # Features
 
 The game offers:
