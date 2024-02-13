@@ -1,0 +1,6 @@
+Algumas orientações sobre como compilar e executar o projeto:
+  1. Ter o G++ e o Cmake instalados e atualizados.
+  2. Criar uma pasta 'build' dentro da pasta 'source'.
+  3. Executar o comando ``cmake ..`` dentro da pasta 'build', pois o arquiivo 'CMakeLists.txt' deve estar na pasta superior a atual.
+  4. Executar o comando ``make`` dentro da pasta 'build'.
+  5. Executar o comando './build/sudoku' na pasta 'source' devido a forma como o projeto foi organizado.
